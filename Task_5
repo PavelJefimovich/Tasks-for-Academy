@@ -1,0 +1,29 @@
+def query_word_distribution(search_queries):
+    # Словарь для хранения распределения запросов по количеству слов
+    word_count_distribution = {}
+
+    # Подсчет количества слов в каждом запросе
+    for query in search_queries:
+        word_count = len(query.split())  # Разделяем строку на слова и считаем количество слов
+        if word_count in word_count_distribution:
+            word_count_distribution[word_count] += 1
+        else:
+            word_count_distribution[word_count] = 1
+
+    # Общее количество запросов
+    total_queries = len(search_queries)
+
+    # Расчет процента запросов для каждого количества слов и сортировка по количеству слов
+    for word_count in sorted(word_count_distribution):
+        percentage = (word_count_distribution[word_count] / total_queries) * 100
+        print(f"{word_count} слов(а): {percentage:.2f}%")
+
+# Пример использования
+search_queries = [
+    "watch new movies", "coffee near me", "how to find the determinant", 
+    "python", "data science jobs in UK", "courses for data science", 
+    "taxi", "google", "yandex", "bing", "champions league", "foreign exchange rates USD/BYN", 
+    "Netflix movies watch online free", "Statistics courses online from top universities"
+]
+
+query_word_distribution(search_queries)
