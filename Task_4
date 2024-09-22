@@ -1,0 +1,85 @@
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None  # Ссылка на следующий узел
+        self.prev = None  # Ссылка на предыдущий узел
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None  # Ссылка на первый узел списка
+        self.tail = None  # Ссылка на последний узел списка
+
+    def push(self, value):
+        """Добавляет значение в конец списка"""
+        new_node = Node(value)
+        if self.tail is None:  # Если список пуст
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+
+    def pop(self):
+        """Удаляет значение с конца списка и возвращает его"""
+        if self.tail is None:  # Если список пуст
+            return None
+        value = self.tail.value
+        if self.tail == self.head:  # Если в списке только один элемент
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+        return value
+
+    def unshift(self, value):
+        """Добавляет значение в начало списка"""
+        new_node = Node(value)
+        if self.head is None:  # Если список пуст
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+
+    def shift(self):
+        """Удаляет значение с начала списка и возвращает его"""
+        if self.head is None:  # Если список пуст
+            return None
+        value = self.head.value
+        if self.head == self.tail:  # Если в списке только один элемент
+            self.head = None
+            self.tail = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+        return value
+
+    def __repr__(self):
+        """Возвращает строковое представление списка"""
+        nodes = []
+        current = self.head
+        while current:
+            nodes.append(str(current.value))
+            current = current.next
+        return " <-> ".join(nodes)
+
+
+# Пример использования:
+dll = DoublyLinkedList()
+dll.push(1)
+dll.push(2)
+dll.push(3)
+print(dll)  # 1 <-> 2 <-> 3
+
+dll.unshift(0)
+print(dll)  # 0 <-> 1 <-> 2 <-> 3
+
+dll.pop()
+print(dll)  # 0 <-> 1 <-> 2
+
+dll.shift()
+print(dll)  # 1 <-> 2
