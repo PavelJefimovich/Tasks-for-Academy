@@ -1,0 +1,44 @@
+def cosine_distance(vector1, vector2):
+    # Проверка на одинаковую длину векторов
+    if len(vector1) != len(vector2):
+        print("Невозможно рассчитать расстояние: вектора имеют разную длину.")
+        return
+
+    # Функция для вычисления скалярного произведения двух векторов
+    def dot_product(v1, v2):
+        result = 0
+        for a, b in zip(v1, v2):
+            result += a * b
+        return result
+
+    # Функция для вычисления длины вектора (модуль вектора)
+    def magnitude(v):
+        result = 0
+        for x in v:
+            result += x * x
+        return result ** 0.5
+
+    # Вычисление скалярного произведения
+    dot_prod = dot_product(vector1, vector2)
+
+    # Вычисление модулей (длин) векторов
+    magnitude_v1 = magnitude(vector1)
+    magnitude_v2 = magnitude(vector2)
+
+    # Проверка на нулевой вектор
+    if magnitude_v1 == 0 or magnitude_v2 == 0:
+        print("Невозможно рассчитать расстояние: один из векторов является нулевым.")
+        return
+
+    # Вычисление косинусной похожести
+    cosine_similarity = dot_prod / (magnitude_v1 * magnitude_v2)
+
+    # Косинусное расстояние
+    cosine_distance = 1 - cosine_similarity
+
+    print(f"Косинусное расстояние: {cosine_distance}")
+
+# Пример использования
+vector1 = [1, 2, 3]
+vector2 = [4, 5, 6]
+cosine_distance(vector1, vector2)
