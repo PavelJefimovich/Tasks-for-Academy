@@ -1,0 +1,19 @@
+from datetime import datetime
+
+def difference_in_days(date1_str, date2_str):
+    # Преобразование строк в объекты datetime
+    date_format = "%Y-%m-%d"  # Формат даты (например, "2023-09-22")
+    date1 = datetime.strptime(date1_str, date_format)
+    date2 = datetime.strptime(date2_str, date_format)
+    
+    # Вычисление разницы между датами
+    delta = date2 - date1
+    
+    # Получаем абсолютное значение разницы в днях
+    difference_in_days = abs(delta.days)
+    
+    print(f"Разница между датами: {difference_in_days} дней")
+    return difference_in_days
+
+# Пример использования функции
+difference_in_days("2022-02-24", "2024-09-22")
