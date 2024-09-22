@@ -1,0 +1,11 @@
+def sort_array(arr):
+    # Используем множество для удаления дубликатов
+    unique_val = set(arr)
+    # Преобразуем множество обратно в список и сортируем его
+    sorted_uni_val = sorted(list(unique_val))
+    return sorted_uni_val
+
+ 
+arr = [7, 5, 3, 1, 12, 6, 6, 3, 2, 10, 12, 4, 11, 1, 8, 10, 3, 4, 7, 2, 5, 4, 1, 9, 11]
+result = sort_array(arr)
+print(result)   
